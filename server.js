@@ -9,6 +9,7 @@ const exampleRoutes = require('./app/routes/example_routes')
 const userRoutes = require('./app/routes/user_routes')
 const recipeRoutes = require('./app/routes/recipe_routes')
 const ingredientRoutes = require('./app/routes/ingredient_routes')
+const weekRoutes = require('./app/routes/week_routes')
 
 // require error handling middleware
 const errorHandler = require('./lib/error_handler')
@@ -64,6 +65,7 @@ app.use(exampleRoutes)
 app.use(userRoutes)
 app.use(ingredientRoutes)
 app.use(recipeRoutes)
+app.use(weekRoutes)
 
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be

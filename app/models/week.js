@@ -3,41 +3,42 @@
 const mongoose = require('mongoose')
 
 const weekSchema = new mongoose.Schema({
+  weekOf: ({
+    type: Date,
+    required: true
+  }),
   mon: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Recipe',
-    required: false
+    ref: 'Recipe'
   }],
   tues: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Recipe',
-    required: false
+    ref: 'Recipe'
   }],
   weds: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Recipe',
-    required: false
+    ref: 'Recipe'
   }],
   thurs: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Recipe',
-    required: false
+    ref: 'Recipe'
   }],
   fri: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Recipe',
-    required: false
+    ref: 'Recipe'
   }],
   sat: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Recipe',
-    required: false
+    ref: 'Recipe'
   }],
   sun: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Recipe',
-    required: false
-  }]
+    ref: 'Recipe'
+  }],
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 }, {
   timestamps: true
 })
