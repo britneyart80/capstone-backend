@@ -10,7 +10,7 @@ curl "${API}${URL_PATH}/${ID}" \
 --header "Authorization: Bearer ${TOKEN}" \
 --data '{
     "week": {
-      "mon": ["5d63fcd3018daa12ae6ff905"]
+      "tues": ["5d63fcd3018daa12ae6f5"]
     }
   }'
 
