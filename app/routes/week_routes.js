@@ -45,7 +45,7 @@ router.get('/weeks', (req, res, next) => {
 
 // SHOW
 // GET /weeks/5a7db6c74d55bc51bdf39793
-router.get('/weeks/:id', requireToken, (req, res, next) => {
+router.get('/weeks/:id', (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
   Week.findById(req.params.id)
     .then(handle404)

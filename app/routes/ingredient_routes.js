@@ -16,9 +16,6 @@ const handle404 = customErrors.handle404
 // will throw an error if resource doesn't belong to user trying to edit it
 const requireOwnership = customErrors.requireOwnership
 
-// require a function that will remove any properties with values of an empty string
-const removeBlanks = require('../../lib/remove_blank_fields')
-
 // get a function that requires that requests have auth headersExample
 const requireToken = passport.authenticate('bearer', { session: false })
 
@@ -40,7 +37,7 @@ router.get('/ingredients/:id', (req, res, next) => {
   const id = req.params.id
 
   Ingredient.findById(id)
-    .populate('recipe')
+    .populate('ingredient')
     .then(handle404)
     .then(ingredient => {
       return ingredient.toObject()
@@ -53,13 +50,30 @@ router.get('/ingredients/:id', (req, res, next) => {
 
 // CREATE
 router.post('/ingredients', requireToken, (req, res, next) => {
+  console.log('body is', req.body)
   req.body.ingredient.owner = req.user.id
-
   Ingredient.create(req.body.ingredient)
     .then(ingredient => {
       return ingredient.toObject()
     })
     .then(ingredient => res.status(201).json({ ingredient }))
+    .catch(next)
+})
+
+// DESTROY
+// DELETE /ingredients/5a7db6c74d55bc51bdf39793
+router.delete('/ingredients/:id', requireToken, (req, res, next) => {
+  Ingredient.findById(req.params.id)
+    .then(handle404)
+    .then(ingredient => {
+      // throw an error if current user doesn't own `ingredient`
+      requireOwnership(req, ingredient)
+      // delete the ingredient ONLY IF the above didn't throw
+      ingredient.remove()
+    })
+    // send back 204 and no content if the deletion succeeded
+    .then(() => res.sendStatus(204))
+    // if an error occurs, pass it to the handler
     .catch(next)
 })
 

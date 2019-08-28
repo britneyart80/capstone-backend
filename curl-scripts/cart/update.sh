@@ -1,7 +1,7 @@
 #!/bin/bash
 
 API="http://localhost:4741"
-URL_PATH="/weeks"
+URL_PATH="/carts"
 
 curl "${API}${URL_PATH}/${ID}" \
   --include \
@@ -9,8 +9,8 @@ curl "${API}${URL_PATH}/${ID}" \
   --header "Content-Type: application/json" \
 --header "Authorization: Bearer ${TOKEN}" \
 --data '{
-    "week": {
-      "0": ["5d6443d0ec26c978f408215c", "5d6443bbec26c978f4082158"]
+    "cart": {
+      "ingredients": ["5d66a51ff7af67114b6cbe1c", "5d66a51ff7af67114b6cbe1c", "5d66a0fef7af67114b6cbe18", "5d66a51ff7af67114b6cbe1c"]
     }
   }'
 
