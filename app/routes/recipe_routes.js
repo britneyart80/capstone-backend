@@ -84,7 +84,6 @@ router.patch('/recipes/:id', requireToken, removeBlanks, (req, res, next) => {
     })
     // respond to client with 204 No Content
     .then(recipe => {
-      console.log(recipe)
       return res.status(204)
     })
     .catch(next)

@@ -6,7 +6,6 @@ const passport = require('passport')
 
 // require our Cart mongoose model, to interact with the database
 const Cart = require('../models/cart')
-const Ingredient = require('../models/ingredient')
 
 // import our custom errors
 const customErrors = require('../../lib/custom_errors')
@@ -53,7 +52,6 @@ router.get('/carts/:id', (req, res, next) => {
 
 // CREATE
 router.post('/carts', requireToken, (req, res, next) => {
-  console.log('body is', req.body)
   req.body.cart.owner = req.user.id
   Cart.create(req.body.cart)
     .then(cart => {
@@ -80,7 +78,6 @@ router.patch('/carts/:id', requireToken, removeBlanks, (req, res, next) => {
     })
     // respond to client with 204 No Content
     .then(cart => {
-      console.log(cart)
       return res.status(204)
     })
     .catch(next)
