@@ -9,7 +9,8 @@ Once you create an account, you have access to meal prepping, recipe making and 
 ### Setup Steps
 1. Fork and clone this repository
 2. Run `npm install` to install all dependencies
-3. Use `npm start` to run the live server
+3. To ensure mongo is running, run `sudo service mongod start` (For Linux/Ubuntu) and `brew services start mongodb` for Mac
+4. Use `npm start` to run the live server
 
 #### Links:
 [Deployed Site](https://britneyart80.github.io/capstone-client/#/)
